@@ -1,6 +1,7 @@
 #include <iostream>
 
-using namespace std;void Qsort(int list[],int num);
+using namespace std;
+void Qsort(int list[],int num);
 
 void Quick_Sort(int list[] , int left ,int right);
 void Swap(int *first , int *second);
@@ -9,14 +10,16 @@ void output(int list[] , int num);
 
 int main()
 {
-    int list[8] = {34,8,64,51,32,21,1,2};
+    int list[9] = {0,0,0,0,0,0,0,1,0};
 
-    Qsort(list , 8);
-    output(list , 8);
+    Qsort(list , 9);
+    output(list , 9);
 }
 
 void Qsort(int list[],int num){
+
     Quick_Sort(list , 0 , num-1);
+
 }
 
 void Quick_Sort(int list[] , int left ,int right){
@@ -28,19 +31,26 @@ void Quick_Sort(int list[] , int left ,int right){
     int Aptr = left;
     int Bptr = right-1;
 
-    while(Aptr < Bptr){
+    while(Aptr <= Bptr){
 
-        while(list[Aptr] < piviot){
+        while(list[Aptr] <= piviot){
            Aptr ++;
+           if(Aptr > (left+right+1)/2){
+               break;
+           }
         }
-        while(list[Bptr] > piviot){
+        while(list[Bptr] >= piviot){
             Bptr--;
+            if(Bptr < (left+right)/2){
+                break;
+            }
         }
-        if(Aptr < Bptr){
+        if(Aptr <= Bptr){
             Swap(&list[Aptr] , &list[Bptr]);
         }
-        else
+        else{
             break;
+        }
     }
 
     Swap(&list[Aptr] , &list[right]);
@@ -64,6 +74,7 @@ int middle(int list[] , int left , int right){
 
     if(list[left] > list[Center])
         Swap(&list[left] , &list[left]);
+
     if(list[left] > list[right])
         Swap(&list[left] , &list[right]);
     if(list[Center] > list[right])

@@ -1,27 +1,27 @@
 ﻿#include <iostream>
 
 using namespace std;
-void Merge(int lista[] , int listb[] , int left ,int Center ,int right);
-void Mergesort(int list[]  ,int temp[], int left ,int right);
-int* Start(int list[],int num);
-void output(int list[] , int num);
+void Merge(long long lista[] , long long listb[] , long long left ,long long Center ,long long right);
+void Mergesort(long long list[]  ,long long temp[], long long left ,long long right);
+long long* Start(long long list[],long long num);
+void output(long long list[] , long long num);
 
 int main()
 {
-    int list[16] = {1,9,2,10,3,11,4,12,5,13,6,14,7,15,8,16};
+    long long list[16] = {1,9,2,10,3,11,4,12,5,13,6,14,7,15,8,16};
 
     output(Start(list , 16),16);
 }
 
-int* Start(int list[],int num){
-    int temp[num];
+long long* Start(long long list[],long long num){
+    long long temp[num];
     Mergesort(list,temp,0,num-1);
     return list;
 }
 
-void Mergesort(int list[] , int temp[],int left ,int right){
+void Mergesort(long long list[] , long long temp[],long long left ,long long right){
 
-     int Center = (left+right)/2;
+     long long Center = (left+right)/2;
 
      if(left < right){
 
@@ -33,10 +33,10 @@ void Mergesort(int list[] , int temp[],int left ,int right){
 
 }
 
-void Merge(int list[] , int temp[] , int left ,int Center ,int right){
-    int Aptr = left;
-    int Bptr = Center+1;
-    int Cptr = left;
+void Merge(long long list[] , long long temp[] , long long left ,long long Center ,long long right){
+    long long Aptr = left;
+    long long Bptr = Center+1;
+    long long Cptr = left;
     while(Cptr != right+1){
         if(Aptr != Center+1 && Bptr != right +1){
             if(list[Aptr] < list[Bptr]){
@@ -62,7 +62,7 @@ void Merge(int list[] , int temp[] , int left ,int Center ,int right){
             Aptr ++;
         }
     }
-        int tempnum = left;
+        long long tempnum = left;
         while(tempnum != right+1){
             list[tempnum] = temp[tempnum];
 //            cout<<list[tempnum]<<endl;
@@ -71,8 +71,8 @@ void Merge(int list[] , int temp[] , int left ,int Center ,int right){
 }
 
 
-void output(int list[] , int num){
-    int temp = 0;
+void output(long long list[] , long long num){
+    long long temp = 0;
     while(temp != num){
 
         cout<<list[temp]<<" ";
