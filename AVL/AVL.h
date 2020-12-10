@@ -19,4 +19,5 @@ Position FindMax(AvlTree T);
 AvlTree Insert(ElementType X, AvlTree T);
 AvlTree Delete(ElementType X, AvlTree T);
 int getHeight(AvlTree T);
+void InOrder(AvlTree T);
 #endif // AVL_H

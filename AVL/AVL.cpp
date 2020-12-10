@@ -107,19 +107,19 @@ AvlTree Delete(ElementType X, AvlTree T){
                 tmp = tmp->Left;
             }
             T->Element = tmp->Element;
-            Delete(tmp->Element, T->Right);
+            T->Right = Delete(tmp->Element, T->Right);
         }
     }
     else if(T->Element > X){
-        return Delete(X, T->Left);
+        T->Left = Delete(X, T->Left);
     }
     else if(T->Element < X){
-        return Delete(X, T->Right);
+        T->Right =  Delete(X, T->Right);
     }
 
     T->Height = max(getHeight(T->Right), getHeight(T->Left)) + 1;
     if(getHeight(T->Right) - getHeight(T->Left) == 2){
-        if(X > T->Right->Element){
+        if(getHeight(T->Right->Right) >= getHeight(T->Right->Left)){
             T = LL_Rotation(T);
         }
         else{
@@ -127,7 +127,7 @@ AvlTree Delete(ElementType X, AvlTree T){
         }
     }
     else if(getHeight(T->Left) - getHeight(T->Right) == 2){
-        if(X < T->Left->Element){
+        if(getHeight(T->Left->Left) >= getHeight(T->Left->Right)){
             T = RR_Rotation(T);
         }
         else{
@@ -137,3 +137,18 @@ AvlTree Delete(ElementType X, AvlTree T){
     return T;
 }
 
+
+void InOrder(AvlTree root)
+{
+    if(root)
+    {
+        InOrder(root->Left);
+        printf("key: %d height: %d ", root->Element, root->Height);
+        if(root->Left)
+            printf("left child: %d ", root->Left->Element);
+        if(root->Right)
+            printf("right child: %d ", root->Right->Element);
+        printf("\n");
+        InOrder(root->Right);
+    }
+}
